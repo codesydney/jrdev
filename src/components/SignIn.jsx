@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useState } from "react"
 function SignIn() {
   const [email, setEmail] = useState("")
@@ -26,24 +27,31 @@ function SignIn() {
   }
 
   const handlePost = async (user) => {
-    const url = "https://jrdevau.herokuapp.com/api/v1/users/login"
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    // const url = "https://jrdevau.herokuapp.com/api/v1/users/login"
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // }).then((result) => {
+    //   result.json().then((resp) => {
+    //     success = resp.status
+    //     handleLogin(success)
+    //   })
+    // })
+    // //   .catch((error) => {
+    // //     console.log(error)
+    // //     handleLogin(success)
+    // //   })
+    axios({
+      method: "post",
+      url: "https://jrdevau.herokuapp.com/api/v1/users/login",
+      data: {
+        email,
+        password,
       },
-      body: JSON.stringify(user),
     })
-      .then((result) => {
-        result.json().then((resp) => {
-          success = resp.status
-          handleLogin(success)
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-        handleLogin(success)
-      })
   }
 
   return (
