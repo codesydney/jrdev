@@ -27,31 +27,7 @@ function SignIn() {
   }
 
   const handlePost = async (user) => {
-    // const url = "https://jrdevau.herokuapp.com/api/v1/users/login"
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(user),
-    // }).then((result) => {
-    //   result.json().then((resp) => {
-    //     success = resp.status
-    //     handleLogin(success)
-    //   })
-    // })
-    // //   .catch((error) => {
-    // //     console.log(error)
-    // //     handleLogin(success)
-    // //   })
-    axios({
-      method: "post",
-      url: "https://jrdevau.herokuapp.com/api/v1/users/login",
-      data: {
-        email,
-        password,
-      },
-    })
+    // To do (use axios api to check if user input is valid)
   }
 
   return (
