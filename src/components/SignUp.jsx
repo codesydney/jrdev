@@ -11,15 +11,15 @@ function SignUp() {
     handleEmail,
     handlePassword,
     handlePasswordConfirm,
-    handleClear,
+    handleError,
     setError,
+    valid,
   } = useContext(UserAccountContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = { name, email, password, passwordConfirm }
     handlePost(data)
-    handleClear()
   }
 
   const handlePost = (user) => {
@@ -32,7 +32,9 @@ function SignUp() {
       body: JSON.stringify(user),
     }).then((result) => {
       result.json().then((resp) => {
+        console.log(resp.message)
         setError(resp.message)
+        handleError()
       })
     })
   }
@@ -86,7 +88,7 @@ function SignUp() {
                 value={passwordConfirm}
               />
               <label htmlFor='floatingPassword'>Confirm Password</label>
-              <p className='text-danger'>{error}</p>
+              <p className={valid ? "text-success" : "text-danger"}>{error}</p>
             </div>
 
             <button className='w-100 btn btn-lg btn-primary' type='submit'>

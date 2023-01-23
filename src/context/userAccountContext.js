@@ -7,7 +7,8 @@ export const UserAccountProvider = ({ children }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirm, setPasswordConfirm] = useState("")
-  const [error, setError] = useState("")
+  const [error, setError] = useState()
+  const [valid, setValid] = useState()
 
   const handleEmail = (e) => {
     setEmail(e.target.value)
@@ -23,6 +24,19 @@ export const UserAccountProvider = ({ children }) => {
   }
   const handleClear = () => {
     setName("")
+    setEmail("")
+    setPassword("")
+    setPasswordConfirm("")
+  }
+  const handleError = () => {
+    if (error === undefined) {
+      handleClear()
+      setError("success")
+      setValid(true)
+    } else {
+      setPassword("")
+      setPasswordConfirm("")
+    }
   }
 
   return (
@@ -38,7 +52,9 @@ export const UserAccountProvider = ({ children }) => {
         handlePasswordConfirm,
         handleName,
         handleClear,
+        handleError,
         setError,
+        valid,
       }}
     >
       {children}
