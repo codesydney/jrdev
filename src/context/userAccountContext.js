@@ -21,10 +21,14 @@ export const UserAccountProvider = ({ children }) => {
   const handleName = (e) => {
     setName(e.target.value)
   }
+  const handleClear = () => {
+    setName("")
+  }
 
   return (
     <UserAccountContext.Provider
       value={{
+        name,
         email,
         password,
         passwordConfirm,
@@ -33,6 +37,7 @@ export const UserAccountProvider = ({ children }) => {
         handlePassword,
         handlePasswordConfirm,
         handleName,
+        handleClear,
         setError,
       }}
     >

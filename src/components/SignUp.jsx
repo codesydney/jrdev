@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import UserAccountContext from "../context/userAccountContext"
 function SignUp() {
   const {
@@ -11,6 +11,7 @@ function SignUp() {
     handleEmail,
     handlePassword,
     handlePasswordConfirm,
+    handleClear,
     setError,
   } = useContext(UserAccountContext)
 
@@ -18,6 +19,7 @@ function SignUp() {
     e.preventDefault()
     const data = { name, email, password, passwordConfirm }
     handlePost(data)
+    handleClear()
   }
 
   const handlePost = (user) => {
@@ -40,7 +42,7 @@ function SignUp() {
       <div className='signin'>
         <div className='form-signin w-100 m-auto gap-3'>
           <form onSubmit={handleSubmit}>
-            <h1 className='h3 mb-3 fw-normal'>Please sign up</h1>
+            <h1 className='h3 mb-3 fw-normal'>Please Sign Up</h1>
             <div className='form-floating'>
               <input
                 type='text'
