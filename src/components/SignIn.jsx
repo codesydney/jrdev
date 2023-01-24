@@ -3,7 +3,8 @@ import { useState } from "react"
 function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  let success = ""
+  const [successMessage, setSuccessMessage] = useState("")
+  const [success, setSuccess] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,14 +21,30 @@ function SignIn() {
   const handleLogin = (info) => {
     console.log("ok", info)
     if (info === "success") {
-      console.log("success")
+      setSuccessMessage("success")
+      setSuccess(true)
     } else {
-      console.log("invalid")
+      setSuccessMessage("Invalid Email or Password")
+      setSuccess(false)
     }
   }
 
   const handlePost = async (user) => {
     // To do (use axios api to check if user input is valid)
+    axios({
+      method: "post",
+      url: "https://jrdevau.herokuapp.com/api/v1/users/login",
+      data: {
+        email,
+        password,
+      },
+    })
+      .then(function (response) {
+        handleLogin(response.data.status)
+      })
+      .catch(function (error) {
+        handleLogin()
+      })
   }
 
   return (
@@ -57,7 +74,11 @@ function SignIn() {
                 value={password}
               />
               <label htmlFor='floatingPassword'>Password</label>
+              <p className={success ? "text-success" : "text-danger"}>
+                {successMessage}
+              </p>
             </div>
+
             <button className='w-100 btn btn-lg btn-primary' type='submit'>
               Sign In
             </button>
