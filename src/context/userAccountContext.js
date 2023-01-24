@@ -29,7 +29,7 @@ export const UserAccountProvider = ({ children }) => {
     setPasswordConfirm("")
   }
   const handleError = () => {
-    if (error === undefined) {
+    if (error !== undefined) {
       handleClear()
       setError("success")
       setValid(true)
