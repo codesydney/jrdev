@@ -7,7 +7,7 @@ function AccountType() {
         <div className='col centr  py-8 px-4 border'>
           <h1 className='txt-blue'>Jr Developer</h1>
           <Link
-            to='/usersignup'
+            to='/signup'
             className='btn button-blue btn-lg shadow button rounded-pill px-2'
           >
             Sign Up
@@ -16,7 +16,7 @@ function AccountType() {
         <div className='col centr  py-8 px-4 border'>
           <h1 className='txt-blue'>Recruiter</h1>
           <Link
-            to='/recruitersignup'
+            to='/signup'
             className=' btn button button-blue btn-lg shadow rounded-pill px-2'
           >
             Sign Up
