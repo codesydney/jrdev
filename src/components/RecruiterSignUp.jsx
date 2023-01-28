@@ -1,21 +1,60 @@
-import { useContext } from "react"
-import UserAccountContext from "../context/userAccountContext"
-function SignUp() {
-  const {
-    name,
-    email,
-    password,
-    passwordConfirm,
-    error,
-    handleName,
-    handleEmail,
-    handlePassword,
-    handlePasswordConfirm,
-    handleError,
-    setError,
-    valid,
-  } = useContext(UserAccountContext)
+import { useState } from "react"
+import { Link } from "react-router-dom"
+function RecruiterSignUp() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirm, setPasswordConfirm] = useState("")
+  const [error, setError] = useState()
+  const [valid, setValid] = useState()
+  const [login, setLogin] = useState(false)
 
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
+  }
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+  const handlePasswordConfirm = (e) => {
+    setPasswordConfirm(e.target.value)
+  }
+  const handleName = (e) => {
+    setName(e.target.value)
+  }
+  const handleClear = () => {
+    setName("")
+    setEmail("")
+    setPassword("")
+    setPasswordConfirm("")
+  }
+  const handleError = (respS, resp, error) => {
+    console.log(resp)
+    if (respS === "success") {
+      handleClear()
+      setError("success")
+      console.log("done")
+      setValid(true)
+    } else {
+      console.log("bad")
+      setPassword("")
+      setPasswordConfirm("")
+      handleErrorType(error)
+    }
+  }
+  const handleErrorType = (error) => {
+    if (error !== "Invalid input data. Passwords must match") {
+      let serror = error.substring(0, 18)
+      console.log(serror)
+      if (serror === "Invalid input data") {
+        setError("Password too short. Minimum 8!")
+      } else if (serror === "E11000 duplicate k") {
+        setError("User Already Exists.")
+        setLogin(true)
+      }
+    } else {
+      setError(error)
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = { name, email, password, passwordConfirm }
@@ -32,9 +71,7 @@ function SignUp() {
       body: JSON.stringify(user),
     }).then((result) => {
       result.json().then((resp) => {
-        console.log(resp.message)
-        setError(resp.message)
-        handleError()
+        handleError(resp.status, resp, resp.message)
       })
     })
   }
@@ -88,7 +125,9 @@ function SignUp() {
                 value={passwordConfirm}
               />
               <label htmlFor='floatingPassword'>Confirm Password</label>
-              <p className={valid ? "text-success" : "text-danger"}>{error}</p>
+              <p className={valid ? "text-success" : "text-danger"}>
+                {error} {login && <Link to='/signin'>Sign In</Link>}
+              </p>
             </div>
 
             <button className='w-100 btn btn-lg btn-primary' type='submit'>
@@ -101,4 +140,4 @@ function SignUp() {
   )
 }
 
-export default SignUp
+export default RecruiterSignUp

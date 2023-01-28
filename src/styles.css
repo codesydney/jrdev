@@ -1,0 +1,36 @@
+.txt-blue {
+  color: #47769f;
+}
+
+.button-blue {
+  color: white;
+  background-color: #3d64ac;
+}
+.button {
+  width: 50%;
+}
+.py-8 {
+  padding: 10% 0;
+}
+.centr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.signin {
+  width: 300px;
+}
+.fs-7 {
+  font-size: 12px;
+}
