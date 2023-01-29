@@ -10,7 +10,6 @@ function SignIn() {
     e.preventDefault()
     const data = { email, password }
     handlePost(data)
-    console.log(data)
   }
   const handleEmail = (e) => {
     setEmail(e.target.value)
@@ -18,8 +17,9 @@ function SignIn() {
   const handlePassword = (e) => {
     setPassword(e.target.value)
   }
-  const handleLogin = (info) => {
-    console.log("ok", info)
+  const handleLogin = (info, JWT, userId) => {
+    console.log(JWT)
+    console.log(userId)
     if (info === "success") {
       setSuccessMessage("success")
       setSuccess(true)
@@ -40,7 +40,11 @@ function SignIn() {
       },
     })
       .then(function (response) {
-        handleLogin(response.data.status)
+        handleLogin(
+          response.data.status,
+          response.data.data.token,
+          response.data.data.user.id
+        )
       })
       .catch(function (error) {
         handleLogin()
