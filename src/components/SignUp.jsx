@@ -1,6 +1,11 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import UserContext from "../context/UserInfo"
 function RecruiterSignUp() {
+  const { setState } = useContext(UserContext)
+  const navigate = useNavigate()
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -34,6 +39,8 @@ function RecruiterSignUp() {
       setError("success")
       console.log("done")
       setValid(true)
+      setState(true)
+      navigate("/userdashboard")
     } else {
       console.log("bad")
       setPassword("")
