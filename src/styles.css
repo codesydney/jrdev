@@ -1,7 +1,17 @@
 .txt-blue {
   color: #47769f;
 }
+.display-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
 
+.large {
+  font-size: 30px;
+  height: 37.5px;
+}
 .button-blue {
   color: white;
   background-color: #3d64ac;

@@ -7,11 +7,11 @@ function Header() {
       aria-label='Second navbar example'
     >
       <div className='container-fluid'>
-        <Link className='navbar-brand d-flex' to='/'>
-          <img className='logo' src={logo} alt='' />
-          <div className='d-flex flex-column gap-0 justify-content-end m-0 p-0'>
-            <p className='fs-3 m-0 text-end'>JrDEV</p>
-            <p className='fs-7 m-0 text-end'>By Code.Sydeny</p>
+        <Link className=' navbar-brand d-flex justify-content ' to='/'>
+          <img className='logo' src={logo} alt='Code.Sydeny Logo' />
+          <div className='display-flex ms-1'>
+            <p className='large m-0 text-end'>JrDEV</p>
+            <p className='fs-7 m-0 text-end'>By Code.Sydney</p>
           </div>
         </Link>
         <button
