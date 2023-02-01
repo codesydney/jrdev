@@ -8,7 +8,7 @@ import Home from "./components/Home"
 import UserContext from "./context/UserInfo"
 import UserDashboard from "./components/UserDashboard"
 function App() {
-  const { state } = useContext(UserContext)
+  const { isLoggedIn } = useContext(UserContext)
   return (
     <Router>
       <Header />
@@ -16,7 +16,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn />} />
-        {state && <Route path='/userdashboard' element={<UserDashboard />} />}
+        {isLoggedIn && (
+          <Route path='/userdashboard' element={<UserDashboard />} />
+        )}
 
         <Route path='/*' element={<NotFound />} />
       </Routes>

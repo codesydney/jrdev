@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import UserContext from "../context/UserInfo"
 function RecruiterSignUp() {
-  const { setState } = useContext(UserContext)
+  const { setIsLoggedIn } = useContext(UserContext)
   const navigate = useNavigate()
 
   const [name, setName] = useState("")
@@ -39,7 +39,7 @@ function RecruiterSignUp() {
       setError("success")
       console.log("done")
       setValid(true)
-      setState(true)
+      setIsLoggedIn(true)
       navigate("/userdashboard")
     } else {
       console.log("bad")

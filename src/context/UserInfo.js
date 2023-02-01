@@ -2,7 +2,7 @@ import { Children, createContext, useState } from "react"
 const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
-  const [state, setState] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState({
     firstName: "Engramar",
     lastName: "Bollas",
@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
     email: "engramar@code.sydney",
   })
   return (
-    <UserContext.Provider value={{ user, setUser, state, setState }}>
+    <UserContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn }}>
       {children}
     </UserContext.Provider>
   )

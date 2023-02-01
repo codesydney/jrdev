@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 function SignIn() {
   const navigate = useNavigate()
-  const { setState } = useContext(UserContext)
+  const { setIsLoggedIn } = useContext(UserContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
@@ -29,7 +29,7 @@ function SignIn() {
     if (info === "success") {
       setSuccessMessage("success")
       setSuccess(true)
-      setState(true)
+      setIsLoggedIn(true)
       navigate("/userdashboard")
     } else {
       setSuccessMessage("Invalid Email or Password")
