@@ -1,12 +1,13 @@
 import axios from "axios"
-import { useContext } from "react"
-import UserContext from "../context/UserInfo"
+import { useUserContext } from "../Hooks/useUserContext"
 import { useNavigate } from "react-router-dom"
 
-import { useState } from "react"
+import { useContext, useState } from "react"
+import UserContext from "../context/UserInfo"
 function SignIn() {
   const navigate = useNavigate()
   const { setIsLoggedIn } = useContext(UserContext)
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
