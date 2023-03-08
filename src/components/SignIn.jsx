@@ -1,12 +1,13 @@
 import axios from "axios"
-import { useContext } from "react"
-import UserContext from "../context/UserInfo"
+import { useUserContext } from "../Hooks/useUserContext"
 import { useNavigate } from "react-router-dom"
 
-import { useState } from "react"
+import { useContext, useState } from "react"
+import UserContext from "../context/UserInfo"
 function SignIn() {
   const navigate = useNavigate()
-  const { setState } = useContext(UserContext)
+  const { setIsLoggedIn } = useContext(UserContext)
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
@@ -26,10 +27,10 @@ function SignIn() {
   const handleLogin = (info, JWT, userId) => {
     console.log(JWT)
     console.log(userId)
-    if (info === "success") {
+    if (info === "succses") {
       setSuccessMessage("success")
       setSuccess(true)
-      setState(true)
+      setIsLoggedIn(true)
       navigate("/userdashboard")
     } else {
       setSuccessMessage("Invalid Email or Password")
@@ -38,24 +39,25 @@ function SignIn() {
   }
 
   const handlePost = async (user) => {
-    // To do (use axios api to check if user input is valid)
     axios({
       method: "post",
-      url: "https://jrdevau.herokuapp.com/api/v1/users/login",
+      url: "http://localhost:3005/api/user/login",
       data: {
         email,
         password,
       },
     })
       .then(function (response) {
+        console.log(response)
         handleLogin(
-          response.data.status,
-          response.data.data.token,
-          response.data.data.user.id
+          response.data.responce,
+          response.data.token,
+          response.data.id
         )
       })
       .catch(function (error) {
         handleLogin()
+        console.log(error)
       })
   }
 

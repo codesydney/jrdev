@@ -3,19 +3,31 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import UserContext from "../context/UserInfo"
 function RecruiterSignUp() {
-  const { setState } = useContext(UserContext)
+  const { setIsLoggedIn } = useContext(UserContext)
   const navigate = useNavigate()
 
   const [name, setName] = useState("")
+  const [lastName, setLastname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirm, setPasswordConfirm] = useState("")
+  const [city, setCity] = useState()
+  const [number, setNumber] = useState("")
   const [error, setError] = useState()
   const [valid, setValid] = useState()
   const [login, setLogin] = useState(false)
 
   const handleEmail = (e) => {
     setEmail(e.target.value)
+  }
+  const handleLastName = (e) => {
+    setLastname(e.target.value)
+  }
+  const handleCity = (e) => {
+    setCity(e.target.value)
+  }
+  const handleNumber = (e) => {
+    setNumber(e.target.value)
   }
   const handlePassword = (e) => {
     setPassword(e.target.value)
@@ -26,61 +38,54 @@ function RecruiterSignUp() {
   const handleName = (e) => {
     setName(e.target.value)
   }
-  const handleClear = () => {
-    setName("")
-    setEmail("")
-    setPassword("")
-    setPasswordConfirm("")
-  }
-  const handleError = (respS, resp, error) => {
-    console.log(resp)
+
+  const handleError = (respS, error) => {
     if (respS === "success") {
-      handleClear()
       setError("success")
       console.log("done")
       setValid(true)
-      setState(true)
+      setIsLoggedIn(true)
       navigate("/userdashboard")
     } else {
-      console.log("bad")
-      setPassword("")
-      setPasswordConfirm("")
-      handleErrorType(error)
+      setError(respS)
     }
   }
-  const handleErrorType = (error) => {
-    if (error !== "Invalid input data. Passwords must match") {
-      let serror = error.substring(0, 18)
-      console.log(serror)
-      if (serror === "Invalid input data") {
-        setError("Password too short. Minimum 8!")
-      } else if (serror === "E11000 duplicate k") {
-        setError("User Already Exists.")
-        setLogin(true)
-      }
-    } else {
-      setError(error)
-    }
-  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    const data = { name, email, password, passwordConfirm }
-    handlePost(data)
+    if (password !== passwordConfirm) {
+      setError("Password do not match!")
+    } else {
+      const data = {
+        email,
+        password,
+        firstName: name,
+        lastName,
+        city,
+        phone: number,
+      }
+      handlePost(data)
+    }
   }
 
   const handlePost = (user) => {
-    const url = "https://jrdevau.herokuapp.com/api/v1/users/signUp"
+    const url = "http://localhost:3005/api/user/signup"
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
-    }).then((result) => {
-      result.json().then((resp) => {
-        handleError(resp.status, resp, resp.message)
-      })
     })
+      .then((result) => {
+        console.log(result)
+        result.json().then((resp) => {
+          handleError(resp.status, resp.message)
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -94,11 +99,22 @@ function RecruiterSignUp() {
                 type='text'
                 className='form-control rounded-0 rounded-top'
                 id='floatingInput'
-                placeholder='Name'
+                placeholder='First Name'
                 onChange={handleName}
                 value={name}
               />
-              <label htmlFor='floatingInput'>Name</label>
+              <label htmlFor='floatingInput'>First Name</label>
+            </div>
+            <div className='form-floating'>
+              <input
+                type='text'
+                className='form-control rounded-0 '
+                id='floatingInput'
+                placeholder='LastName'
+                onChange={handleLastName}
+                value={lastName}
+              />
+              <label htmlFor='floatingInput'>Last Name</label>
             </div>
             <div className='form-floating'>
               <input
@@ -122,16 +138,38 @@ function RecruiterSignUp() {
               />
               <label htmlFor='floatingPassword'>Password</label>
             </div>
-            <div className='form-floating mb-5'>
+            <div className='form-floating'>
               <input
                 type='password'
-                className='form-control rounded-0 rounded-bottom shadow mb-1'
+                className='form-control rounded-0   '
                 id='floatingPassword'
                 placeholder='Confirm Password'
                 onChange={handlePasswordConfirm}
                 value={passwordConfirm}
               />
               <label htmlFor='floatingPassword'>Confirm Password</label>
+            </div>
+            <div className='form-floating'>
+              <input
+                type='password'
+                className='form-control rounded-0   '
+                id='floatingPassword'
+                placeholder='Confirm Password'
+                onChange={handleCity}
+                value={city}
+              />
+              <label htmlFor='floatingPassword'>City</label>
+            </div>
+            <div className='form-floating mb-5'>
+              <input
+                type='number'
+                className='form-control rounded-0 rounded-bottom shadow mb-1'
+                id='floatingPassword'
+                placeholder='Confirm Password'
+                onChange={handleNumber}
+                value={number}
+              />
+              <label htmlFor='floatingPassword'>Phone</label>
               <p className={valid ? "text-success" : "text-danger"}>
                 {error} {login && <Link to='/signin'>Sign In</Link>}
               </p>
