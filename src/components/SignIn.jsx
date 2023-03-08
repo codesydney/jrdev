@@ -27,7 +27,7 @@ function SignIn() {
   const handleLogin = (info, JWT, userId) => {
     console.log(JWT)
     console.log(userId)
-    if (info === "success") {
+    if (info === "succses") {
       setSuccessMessage("success")
       setSuccess(true)
       setIsLoggedIn(true)
@@ -39,24 +39,25 @@ function SignIn() {
   }
 
   const handlePost = async (user) => {
-    // To do (use axios api to check if user input is valid)
     axios({
       method: "post",
-      url: "https://jrdevau.herokuapp.com/api/v1/users/login",
+      url: "http://localhost:3005/api/user/login",
       data: {
         email,
         password,
       },
     })
       .then(function (response) {
+        console.log(response)
         handleLogin(
-          response.data.status,
-          response.data.data.token,
-          response.data.data.user.id
+          response.data.responce,
+          response.data.token,
+          response.data.id
         )
       })
       .catch(function (error) {
         handleLogin()
+        console.log(error)
       })
   }
 
