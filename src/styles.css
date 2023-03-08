@@ -1,6 +1,11 @@
 .txt-blue {
   color: #47769f;
 }
+.button-blue {
+  color: white;
+  background-color: #3d64ac;
+}
+
 .display-flex {
   display: flex;
   flex-direction: column;
@@ -11,10 +16,6 @@
 .large {
   font-size: 30px;
   height: 37.5px;
-}
-.button-blue {
-  color: white;
-  background-color: #3d64ac;
 }
 .button {
   width: 50%;
