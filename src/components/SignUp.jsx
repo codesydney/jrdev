@@ -5,7 +5,7 @@ import avatarBackground from '../assets/avatarBackground.jpg';
 import { useContext } from 'react';
 import UserContext from '../context/UserInfo';
 import axios from 'axios';
-function RecruiterSignUp() {
+function SignUp() {
   const { setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -51,10 +51,10 @@ function RecruiterSignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSpinner(true);
     if (password !== passwordConfirm) {
       setError('Password do not match!');
     } else {
+      setSpinner(true);
       const formData = new FormData();
       formData.append('email', email);
       formData.append('password', password);
@@ -224,4 +224,4 @@ function RecruiterSignUp() {
   );
 }
 
-export default RecruiterSignUp;
+export default SignUp;
