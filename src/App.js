@@ -7,6 +7,7 @@ import NotFound from "./components/NotFound"
 import Home from "./components/Home"
 import UserContext from "./context/UserInfo"
 import UserDashboard from "./components/UserDashboard"
+import BuildProfile from "./components/BuildProfile"
 function App() {
   const { isLoggedIn } = useContext(UserContext)
   return (
@@ -18,6 +19,9 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         {isLoggedIn && (
           <Route path='/userdashboard' element={<UserDashboard />} />
+        )}
+        {isLoggedIn && (
+          <Route path='/buildprofile' element={<BuildProfile />} />
         )}
 
         <Route path='/*' element={<NotFound />} />

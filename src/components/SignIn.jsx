@@ -38,7 +38,7 @@ function SignIn() {
 
   const handlePost = async (user) => {
     try {
-      const res = await axios.post('/api/user/login', user);
+      const res = await axios.post('http://localhost:3000/api/user/login', user);
       handleLogin(res.data.status, res.data.token, res.data.id);
     } catch (error) {
       handleLogin();
