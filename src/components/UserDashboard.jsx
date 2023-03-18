@@ -34,6 +34,18 @@ function UserDashboard() {
             {user.email}
           </a>
         </div>
+
+        <div className='container cntr mt-5'>
+          <div className='col centr py-5 px-10'>
+              <Link
+                to='/buildprofile'
+                className='btn button-blue btn-lg shadow button rounded-pill px-2'
+              >
+                Build your profile
+              </Link>
+          </div>
+        </div>
+
       </div>
     </div>
   )

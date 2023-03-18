@@ -70,7 +70,7 @@ function SignUp() {
 
   const handlePost = async (user) => {
     try {
-      const res = await axios.post('/api/user/signup', user);
+      const res = await axios.post('http://localhost:3000/api/user/signup', user);
       if (res.status === 200) {
         setError('');
         setValid(true);
