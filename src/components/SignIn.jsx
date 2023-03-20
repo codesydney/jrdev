@@ -13,15 +13,15 @@ function SignIn() {
   const [successMessage, setSuccessMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const data = { email, password };
     handlePost(data);
   };
-  const handleEmail = (e) => {
+  const handleEmail = e => {
     setEmail(e.target.value);
   };
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
   };
   const handleLogin = (info, JWT, userId) => {
@@ -36,9 +36,12 @@ function SignIn() {
     }
   };
 
-  const handlePost = async (user) => {
+  const handlePost = async user => {
     try {
-      const res = await axios.post('http://localhost:3000/api/user/login', user);
+      const res = await axios.post(
+        'http://localhost:3000/api/user/login',
+        user
+      );
       handleLogin(res.data.status, res.data.token, res.data.id);
     } catch (error) {
       handleLogin();
@@ -73,7 +76,9 @@ function SignIn() {
                 value={password}
               />
               <label htmlFor="floatingPassword">Password</label>
-              <p className={success ? 'text-success' : 'text-danger'}>{successMessage}</p>
+              <p className={success ? 'text-success' : 'text-danger'}>
+                {successMessage}
+              </p>
             </div>
 
             <button className="w-100 btn btn-lg btn-primary" type="submit">

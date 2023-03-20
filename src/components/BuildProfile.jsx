@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import UserContext from "../context/UserInfo";
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import UserContext from '../context/UserInfo';
 function BuildProfile() {
   const { user, setUser, setState } = useContext(UserContext);
   const handleClick = () => {
