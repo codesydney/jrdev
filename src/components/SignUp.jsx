@@ -23,33 +23,33 @@ function SignUp() {
   const [login, setLogin] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
-  const handleEmail = (e) => {
+  const handleEmail = e => {
     setEmail(e.target.value);
   };
-  const handleLastName = (e) => {
+  const handleLastName = e => {
     setLastname(e.target.value);
   };
-  const handleCity = (e) => {
+  const handleCity = e => {
     setCity(e.target.value);
   };
-  const handlePhoneNumber = (e) => {
+  const handlePhoneNumber = e => {
     setPhoneNumber(e.target.value);
   };
-  const handlePassword = (e) => {
+  const handlePassword = e => {
     setPassword(e.target.value);
   };
-  const handlePasswordConfirm = (e) => {
+  const handlePasswordConfirm = e => {
     setPasswordConfirm(e.target.value);
   };
-  const handleFirstName = (e) => {
+  const handleFirstName = e => {
     setFirstName(e.target.value);
   };
-  const handleAvatar = (e) => {
+  const handleAvatar = e => {
     setAvatar(e.target.files[0]);
     setThumbnail(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (password !== passwordConfirm) {
       setError("Password do not match!");
@@ -67,9 +67,13 @@ function SignUp() {
     }
   };
 
-  const handlePost = async (user) => {
+  const handlePost = async user => {
     try {
+
       const res = await axios.post('http://localhost:3000/api/user/signup',user);
+
+
+
       if (res.status === 200) {
         setError("");
         setValid(true);
@@ -212,7 +216,9 @@ function SignUp() {
               </button>
             ) : (
               <button
+
                 class="w-100 btn button-blue btn-block"
+
                 type="button"
                 disabled
               >

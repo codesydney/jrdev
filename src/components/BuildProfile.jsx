@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import UserContext from "../context/UserInfo";
+
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import UserContext from '../context/UserInfo';
 
 function BuildProfile() {
   const { user, setState, setUser } = useContext(UserContext);
