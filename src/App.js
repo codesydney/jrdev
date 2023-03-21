@@ -24,7 +24,11 @@ function App() {
           <Route path="/buildprofile" element={<BuildProfile />} />
         )}
 
-        <Route path="/*" element={<NotFound />} />
+        <Route path='/*' element={<NotFound />} />
+
+
+
+
       </Routes>
     </Router>
   );
