@@ -23,7 +23,6 @@ function App() {
         {isLoggedIn && (
           <Route path='/buildprofile' element={<BuildProfile />} />
         )}
-
         <Route path='/*' element={<NotFound />} />
       </Routes>
     </Router>
