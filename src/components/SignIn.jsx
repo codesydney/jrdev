@@ -1,15 +1,16 @@
-import axios from "axios";
-import { useUserContext } from "../Hooks/useUserContext";
-import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import UserContext from "../context/UserInfo";
+import axios from 'axios';
+import { useUserContext } from '../Hooks/useUserContext';
+import { useNavigate } from 'react-router-dom';
 
+import { useContext, useState } from 'react';
+import UserContext from '../context/UserInfo';
 function SignIn() {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(UserContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = e => {
@@ -24,29 +25,27 @@ function SignIn() {
     setPassword(e.target.value);
   };
   const handleLogin = (info, JWT, userId) => {
-    if (info === "succses") {
-      setSuccessMessage("success");
+    if (info === 'succses') {
+      setSuccessMessage('success');
       setSuccess(true);
       setIsLoggedIn(true);
-      navigate("/userdashboard");
+      navigate('/userdashboard');
     } else {
-      setSuccessMessage("Invalid Email or Password1");
+      setSuccessMessage('Invalid Email or Password1');
       setSuccess(false);
     }
   };
 
   const handlePost = async user => {
     try {
-
       const res = await axios.post(
         'http://localhost:3000/api/user/login',
         user
       );
-
       handleLogin(res.data.status, res.data.token, res.data.id);
     } catch (error) {
       handleLogin();
-      console.log("err", error);
+      console.log('err', error);
     }
   };
 
@@ -77,14 +76,12 @@ function SignIn() {
                 value={password}
               />
               <label htmlFor="floatingPassword">Password</label>
-
-              <p className={success ? "text-success" : "text-danger"}>
-
+              <p className={success ? 'text-success' : 'text-danger'}>
                 {successMessage}
               </p>
             </div>
 
-            <button className="w-100 btn button-blue btn-block" type="submit">
+            <button className="w-100 btn btn-lg btn-primary" type="submit">
               Sign In
             </button>
           </form>
