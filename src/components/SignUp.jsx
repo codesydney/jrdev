@@ -1,23 +1,23 @@
-import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import defaultAvatar from "../assets/defaultAvatar.png";
-import avatarBackground from "../assets/avatarBackground.jpg";
-import { useContext } from "react";
-import UserContext from "../context/UserInfo";
-import axios from "axios";
-
+import { useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import defaultAvatar from '../assets/defaultAvatar.png';
+import avatarBackground from '../assets/avatarBackground.jpg';
+import { useContext } from 'react';
+import UserContext from '../context/UserInfo';
+import axios from 'axios';
 function SignUp() {
   const { setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [city, setCity] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
-  const [avatar, setAvatar] = useState("");
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [city, setCity] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
+  const [avatar, setAvatar] = useState('');
   const [error, setError] = useState();
   const [valid, setValid] = useState();
   const [login, setLogin] = useState(false);
@@ -52,40 +52,40 @@ function SignUp() {
   const handleSubmit = e => {
     e.preventDefault();
     if (password !== passwordConfirm) {
-      setError("Password do not match!");
+      setError('Password do not match!');
     } else {
       setSpinner(true);
       const formData = new FormData();
-      formData.append("email", email);
-      formData.append("password", password);
-      formData.append("firstName", firstName);
-      formData.append("lastName", lastName);
-      formData.append("city", city);
-      formData.append("phone", phoneNumber);
-      formData.append("avatar", avatar);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('city', city);
+      formData.append('phone', phoneNumber);
+      formData.append('avatar', avatar);
+
       handlePost(formData);
     }
   };
 
   const handlePost = async user => {
     try {
-
-      const res = await axios.post('http://localhost:3000/api/user/signup',user);
-
-
-
+      const res = await axios.post(
+        'http://localhost:3000/api/user/signup',
+        user
+      );
       if (res.status === 200) {
-        setError("");
+        setError('');
         setValid(true);
         setIsLoggedIn(true);
-        navigate("/userdashboard");
+        navigate('/userdashboard');
       }
     } catch (error) {
       setSpinner(false);
       if (error.response && error.response.data) {
         setError(error.response.data.error);
       } else {
-        setError("An unknown error occurred.");
+        setError('An unknown error occurred.');
       }
     }
   };
@@ -100,9 +100,9 @@ function SignUp() {
               className="d-flex justify-content-center p-3 rounded mb-2"
               style={{
                 backgroundImage: `url(${avatarBackground})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}
             >
               <label htmlFor="avatarUpload">
@@ -112,9 +112,9 @@ function SignUp() {
                   className="rounded-circle"
                   role="button"
                   style={{
-                    width: "5rem",
-                    height: "5rem",
-                    border: "3px solid rgb(242,245,246)",
+                    width: '5rem',
+                    height: '5rem',
+                    border: '3px solid rgb(242,245,246)',
                   }}
                 />
               </label>
@@ -122,7 +122,7 @@ function SignUp() {
                 type="file"
                 id="avatarUpload"
                 accept="image/*"
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
                 onChange={handleAvatar}
               />
             </div>
@@ -206,7 +206,7 @@ function SignUp() {
               <label htmlFor="phoneNumberInput">Phone</label>
             </div>
 
-            <p className={valid ? "text-success" : "text-danger"}>
+            <p className={valid ? 'text-success' : 'text-danger'}>
               {error} {login && <Link to="/signin">Sign In</Link>}
             </p>
 
@@ -216,9 +216,7 @@ function SignUp() {
               </button>
             ) : (
               <button
-
-                class="w-100 btn button-blue btn-block"
-
+                class="w-100 btn btn-lg btn-primary"
                 type="button"
                 disabled
               >
