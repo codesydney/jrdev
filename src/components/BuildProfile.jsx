@@ -1,5 +1,6 @@
-
-import { useContext } from 'react';
+import axios from "axios";
+import { useContext, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import UserContext from '../context/UserInfo';
 
@@ -10,7 +11,7 @@ function BuildProfile() {
 
   //Token was hardcoded here for time being.
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0NGNiNTUyZDU2OTJjOGJiMjA2NGEiLCJpYXQiOjE2NzkzMDkwNDMsImV4cCI6MTY3OTU2ODI0M30.kXmjGf93fauSHMxp0ktn06u6xriKRmO8n9IW0rGQDl4";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0NGNiNTUyZDU2OTJjOGJiMjA2NGEiLCJpYXQiOjE2Nzk2NDc0NDQsImV4cCI6MTY3OTkwNjY0NH0.U6fB6ntkmutMsUoxOwRS7wLvscklrwFhR837K71pk-A";
 
   const [about, setAbout] = useState("");
   const [skills, setSkills] = useState("");
