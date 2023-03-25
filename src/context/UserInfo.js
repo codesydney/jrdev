@@ -3,6 +3,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({
     firstName: 'Engramar',
     lastName: 'Bollas',
@@ -17,6 +18,8 @@ export const UserProvider = ({ children }) => {
         setUser,
         isLoggedIn,
         setIsLoggedIn,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

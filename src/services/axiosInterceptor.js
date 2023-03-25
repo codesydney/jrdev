@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useContext } from 'react';
+import UserContext from '../context/UserInfo';
 
 const services = axios.create({
   baseURL: process.env.BASE_API || 'http://localhost:3000/api',
@@ -7,9 +9,8 @@ const services = axios.create({
 
 services.interceptors.request.use(request => {
   const token = localStorage.getItem('authToken');
-  if (token) {
-    request.headers['Authorization'] = `Bearer ${token}`;
-  }
+  request.headers['Authorization'] = `Bearer ${token}`;
+
   return request;
 });
 

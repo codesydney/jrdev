@@ -10,20 +10,33 @@ import UserDashboard from './components/UserDashboard';
 import BuildProfile from './components/BuildProfile';
 import services from './services/axiosInterceptor';
 import axios from 'axios';
+import Loading from './page/Loading';
 function App() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn, isLoading, setIsLoading } =
+    useContext(UserContext);
 
   useEffect(() => {
-    services
-      .get('/user/authentication')
-      .then(res => {
-        setIsLoggedIn(true);
-      })
-      .catch(error => {
-        setIsLoggedIn(false);
-        localStorage.removeItem('authToken');
-      });
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // setIsLoading(!!token);
+      services
+        .get('/user/authentication')
+        .then(res => {
+          setIsLoggedIn(true);
+        })
+        .catch(error => {
+          setIsLoggedIn(false);
+          localStorage.removeItem('authToken');
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
+    }
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Router>
@@ -38,8 +51,7 @@ function App() {
         {isLoggedIn && (
           <Route path="/buildprofile" element={<BuildProfile />} />
         )}
-
-        <Route path="/*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
