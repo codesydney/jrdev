@@ -18,23 +18,6 @@ function SignIn() {
     const data = { email, password };
     handlePost(data);
   };
-  const handleEmail = e => {
-    setEmail(e.target.value);
-  };
-  const handlePassword = e => {
-    setPassword(e.target.value);
-  };
-  const handleLogin = (info, JWT, userId) => {
-    if (info === 'succses') {
-      setSuccessMessage('success');
-      setSuccess(true);
-      setIsLoggedIn(true);
-      navigate('/userdashboard');
-    } else {
-      setSuccessMessage('Invalid Email or Password1');
-      setSuccess(false);
-    }
-  };
 
   const handlePost = async user => {
     try {
@@ -46,6 +29,25 @@ function SignIn() {
     } catch (error) {
       handleLogin();
       console.log('err', error);
+    }
+  };
+
+  const handleEmail = e => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = e => {
+    setPassword(e.target.value);
+  };
+  const handleLogin = (info, token, userId) => {
+    if (info === 'succses') {
+      setSuccessMessage('success');
+      setSuccess(true);
+      setIsLoggedIn(true);
+      localStorage.setItem('authToken', token);
+      navigate('/userdashboard');
+    } else {
+      setSuccessMessage('Invalid Email or Password1');
+      setSuccess(false);
     }
   };
 

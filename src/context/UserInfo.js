@@ -1,4 +1,4 @@
-import { Children, createContext, useState } from 'react';
+import { Children, createContext, useEffect, useState } from 'react';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -9,8 +9,16 @@ export const UserProvider = ({ children }) => {
     photo: 'https://randomuser.me/api/portraits/men/78.jpg',
     email: 'engramar@code.sydney',
   });
+
   return (
-    <UserContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        isLoggedIn,
+        setIsLoggedIn,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

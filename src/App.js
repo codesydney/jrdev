@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import Header from './components/Header';
@@ -8,8 +8,23 @@ import Home from './components/Home';
 import UserContext from './context/UserInfo';
 import UserDashboard from './components/UserDashboard';
 import BuildProfile from './components/BuildProfile';
+import services from './services/axiosInterceptor';
+import axios from 'axios';
 function App() {
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
+  useEffect(() => {
+    services
+      .get('/user/authentication')
+      .then(res => {
+        setIsLoggedIn(true);
+      })
+      .catch(error => {
+        setIsLoggedIn(false);
+        localStorage.removeItem('authToken');
+      });
+  }, []);
+
   return (
     <Router>
       <Header />
