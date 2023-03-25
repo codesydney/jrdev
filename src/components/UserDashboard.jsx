@@ -4,6 +4,7 @@ import UserContext from '../context/UserInfo';
 function UserDashboard() {
   const { user, setUser, setState } = useContext(UserContext);
   const handleClick = () => {
+    localStorage.removeItem('authToken');
     setState();
     setUser();
   };

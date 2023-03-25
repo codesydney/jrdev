@@ -14,6 +14,7 @@ function Header() {
             <p className="fs-7 m-0 text-end">By Code.Sydney</p>
           </div>
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -49,8 +50,4 @@ function Header() {
   );
 }
 
-{
-  /* <Link to='/signin'>signin</Link>
-      <Link to='/signup'>signup</Link> */
-}
 export default Header;
