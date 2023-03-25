@@ -9,12 +9,12 @@ import UserContext from './context/UserInfo';
 import UserDashboard from './components/UserDashboard';
 import BuildProfile from './components/BuildProfile';
 import services from './services/axiosInterceptor';
-import axios from 'axios';
 import Loading from './page/Loading';
 function App() {
   const { isLoggedIn, setIsLoggedIn, isLoading, setIsLoading } =
     useContext(UserContext);
 
+  // verify token and set up loggedIn
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {

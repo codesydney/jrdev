@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { useUserContext } from '../Hooks/useUserContext';
 import { useNavigate } from 'react-router-dom';
-
 import { useContext, useState } from 'react';
 import UserContext from '../context/UserInfo';
 function SignIn() {
@@ -35,9 +33,11 @@ function SignIn() {
   const handleEmail = e => {
     setEmail(e.target.value);
   };
+
   const handlePassword = e => {
     setPassword(e.target.value);
   };
+
   const handleLogin = (info, token, userId) => {
     if (info === 'succses') {
       setSuccessMessage('success');
