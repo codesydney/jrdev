@@ -2,25 +2,34 @@ import { Link } from 'react-router-dom';
 
 function AccountType() {
   return (
-    <div className="container cntr mt-5">
-      <div className="row gap-5">
-        <div className="col centr  py-8 px-4 border">
-          <h1 className="txt-blue">Jr Developer</h1>
-          <Link
-            to="/signup"
-            className="btn button-blue btn-lg shadow button rounded-pill px-2"
-          >
-            Sign Up
-          </Link>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="w-full md:w-80 p-6 bg-white shadow rounded-lg">
+          <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
+            Jr Developer
+          </h1>
+          <div className="flex justify-center">
+            <Link
+              to="/signup"
+              className="inline-block px-6 py-3 text-lg font-bold leading-none text-white bg-blue-600 rounded-full hover:bg-blue-700"
+            >
+              Sign Up
+            </Link>
+          </div>
         </div>
-        <div className="col centr  py-8 px-4 border">
-          <h1 className="txt-blue">Recruiter</h1>
-          <Link
-            to="/signup"
-            className=" btn button button-blue btn-lg shadow rounded-pill px-2"
-          >
-            Sign Up
-          </Link>
+
+        <div className="w-full  md:w-80 p-6 bg-white shadow rounded-lg">
+          <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
+            Recruiter
+          </h1>
+          <div className="flex justify-center">
+            <Link
+              to="/signup"
+              className="inline-block px-6 py-3 text-lg font-bold leading-none text-white bg-blue-600 rounded-full hover:bg-blue-700"
+            >
+              Sign Up
+            </Link>
+          </div>
         </div>
       </div>
     </div>
