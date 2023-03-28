@@ -1,24 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logo from './resources/codesydenylogo.png';
 import { Link } from 'react-router-dom';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
+  useEffect(() => {
+    function handleScroll() {
+      if (window.pageYOffset > 0) {
+        console.log('页面向下滚动了');
+        setIsScrolled(true);
+      } else {
+        console.log('页面没有向下滚动');
+        setIsScrolled(false);
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isScrolled]);
 
   return (
-    <nav className="w-full h-20 bg-white shadow">
+    <nav
+      className={` ${
+        isScrolled
+          ? 'bg-bg-200 md:w-[80%] mx-auto rounded-2xl shadow-2xl shadow-inner shadow-bg-300/50'
+          : 'bg-transparent md:w-[90%] mx-auto'
+      }  h-16 sticky top-0 left-0 z-50`}
+    >
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex px-2 lg:px-0">
-            <div className="flex-shrink-0 flex items-center border-2">
+            <div className="flex-shrink-0 flex items-center ">
               <img className="h-8 w-auto" src={logo} alt="Code.Sydeny Logo" />
-              <div className="flex flex-col justify-end items-center border-2">
+              <div className="flex flex-col justify-end items-center ">
                 <p className="font-bold text-lg mb-0">JrDEV</p>
-                <p className="border-2 text-sm ">By Code.Sydney</p>
+                <p className=" text-sm ">By Code.Sydney</p>
               </div>
             </div>
           </div>
@@ -59,6 +79,7 @@ function Header() {
               </svg>
             </button>
           </div>
+
           <div className="hidden sm:flex sm:items-center">
             <div className="flex-shrink-0">
               <Link
@@ -83,9 +104,9 @@ function Header() {
       <div
         className={`${
           isMenuOpen ? 'block' : 'hidden'
-        } lg:hidden border-t border-gray-200`}
+        } sm:hidden w-[30%] right-0 absolute h-screen bg-gray-100 border-t border-gray-200`}
       >
-        <div className="px-2 pt-2 pb-3">
+        <div className="h-screen px-2 pt-2 pb-3 flex flex-col justify-center items-center my-auto">
           <a
             href="/signin"
             className="block font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
