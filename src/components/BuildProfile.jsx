@@ -1,10 +1,12 @@
+
 import axios from "axios";
 import { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+
 import { Link } from 'react-router-dom';
 import UserContext from '../context/UserInfo';
-
 function BuildProfile() {
+
   const { user, setState, setUser } = useContext(UserContext);
   const { setIsLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
@@ -134,7 +136,9 @@ function BuildProfile() {
                         ></label>
                       </div>
                     </div>
+
                   </div>
+
 
                   <div className="form-outline mb-4">
                     <div className="form-outline">
@@ -197,6 +201,7 @@ function BuildProfile() {
                   </div>
                 </div>
               </div>
+
 
               <div className="col mt-4 mb-4 me-4 border">
                 <div className="container cntr mt-4">
@@ -264,7 +269,9 @@ function BuildProfile() {
                         ></label>
                       </div>
                     </div>
+
                   </div>
+
 
                   <div className="row mb-4">
                     <div className="col">
@@ -294,6 +301,7 @@ function BuildProfile() {
                         <h5>Upload your resume</h5>
                       </div>
 
+
                       <div className="file-upload-wrapper">
                         <input
                           type="file"
@@ -307,6 +315,7 @@ function BuildProfile() {
                     </div>
                   </div>
 
+
                   <div>
                     <button
                       type="submit"
@@ -317,6 +326,7 @@ function BuildProfile() {
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </form>
