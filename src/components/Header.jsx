@@ -11,11 +11,9 @@ function Header() {
   }
   useEffect(() => {
     function handleScroll() {
-      if (window.pageYOffset > 0) {
-        console.log('页面向下滚动了');
+      if (window.pageYOffset > 100) {
         setIsScrolled(true);
       } else {
-        console.log('页面没有向下滚动');
         setIsScrolled(false);
       }
     }
@@ -27,8 +25,8 @@ function Header() {
     <nav
       className={` ${
         isScrolled
-          ? 'bg-bg-200 md:w-[80%] mx-auto rounded-2xl shadow-2xl shadow-inner shadow-bg-300/50'
-          : 'bg-transparent md:w-[90%] mx-auto'
+          ? 'bg-secondary md:w-[80%] mx-auto sm:rounded-2xl shadow-2xl text-white shadow-bg-300/50'
+          : 'bg-bg-100 text-black md:w-full mx-auto'
       }  h-16 sticky top-0 left-0 z-50`}
     >
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -47,7 +45,7 @@ function Header() {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+              className="inline-flex items-center justify-center p-2 m-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-bg-200 focus:text-gray-500 transition duration-150 ease-in-out"
               aria-label="Main menu"
               aria-expanded="false"
             >
@@ -84,7 +82,7 @@ function Header() {
             <div className="flex-shrink-0">
               <Link
                 to="/signin"
-                className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                className="font-medium hover:text-text-100 transition duration-150 ease-in-out"
               >
                 Sign In
               </Link>
@@ -92,7 +90,7 @@ function Header() {
             <div className="ml-4 flex-shrink-0">
               <Link
                 to="/"
-                className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                className="font-medium hover:text-text-100 transition duration-150 ease-in-out"
               >
                 Home
               </Link>
@@ -104,21 +102,21 @@ function Header() {
       <div
         className={`${
           isMenuOpen ? 'block' : 'hidden'
-        } sm:hidden w-[30%] right-0 absolute h-screen bg-gray-100 border-t border-gray-200`}
+        } sm:hidden w-full right-0 absolute h-60 bg-gray-100 border-t border-gray-200`}
       >
-        <div className="h-screen px-2 pt-2 pb-3 flex flex-col justify-center items-center my-auto">
-          <a
-            href="/signin"
-            className="block font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+        <div className="px-8 pt-2 h-full pb-3 gap-5 flex flex-col justify-start bg-bg-200 items-start  my-auto">
+          <Link
+            to="/signin"
+            className="block font-medium text-gray-500 hover:text-text-100 transition duration-150 ease-in-out"
           >
             Sign In
-          </a>
-          <a
-            href="/"
-            className="mt-1 block font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+          </Link>
+          <Link
+            to="/"
+            className="mt-1 block font-medium text-gray-500 hover:text-text-100 transition duration-150 ease-in-out"
           >
             Home
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

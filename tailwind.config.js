@@ -4,23 +4,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          100: '#8B5FBF',
-          200: '#ff607e',
-          300: '#ffcddf',
-        },
+        primary: '#f3f5f7',
+        secondary: '#202329',
         accent: {
           100: '#FFC107',
           200: '#916400',
         },
         text: {
-          100: '#333333',
-          200: '#5c5c5c',
+          100: '#5c5c5c',
         },
         bg: {
           100: '#F7F7F7',
           200: '#ededed',
-          300: '#c4c4c4',
+          300: '#d5eaef',
+          400: '#F3F5F7',
+        },
+        bt: {
+          100: '#00bebd',
+          200: '#01a7a7',
         },
       },
     },

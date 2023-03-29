@@ -97,11 +97,11 @@ function SignUp() {
     <div className="w-full">
       <div className="w-[80%] mx-auto flex flex-col sm:flex-row justify-center items-start bg-gradient-to-tr from-white to-bg-200">
         {/* left side */}
-        <div className="hidden md:block  md:w-1/2 xl:w-2/3 border-double border-r-4 rounded-tr-[20%] ">
+        <div className="hidden md:block md:w-1/2 xl:w-2/3 rounded-tr-[20%] my-auto">
           <img src={singupBackground} alt="" className="h-full w-full" />
         </div>
         {/* Signup form */}
-        <div className="w-full md:w-1/2 xl:w-1/3 p-6 sm:p-12  ">
+        <div className="w-full md:w-1/2 xl:w-1/3 p-6 sm:p-12 md:border-double md:border-l-4 md:rounded-tl-[15%]">
           <h1 className="text-2xl font-bold text-center">Create an account</h1>
           <form
             onSubmit={handleSubmit}
@@ -143,12 +143,12 @@ function SignUp() {
                 </p>
               </div>
             </div>
-            <div className="mt-4 flex justify-start ">
+            <div className="mt-4 flex justify-start p-2">
               <button
                 type="button"
                 className={`${
                   userType === 'candidate'
-                    ? 'bg-black text-white shadow-lg scale-110'
+                    ? 'bg-secondary text-white shadow-lg scale-110'
                     : 'bg-gray-200'
                 } text-gray-700 font-bold py-2 px-4 rounded-l-lg`}
                 onClick={() => setUserType('candidate')}
@@ -159,7 +159,7 @@ function SignUp() {
                 type="button"
                 className={`${
                   userType === 'recruiter'
-                    ? 'bg-black text-white shadow-lg scale-110'
+                    ? 'bg-secondary text-white shadow-lg scale-110'
                     : 'bg-gray-200'
                 } text-gray-700 font-bold py-2 px-4 rounded-r-lg`}
                 onClick={() => setUserType('recruiter')}
@@ -268,7 +268,7 @@ function SignUp() {
               <p className={valid ? ' ' : 'text-red-500'}>{error}</p>
               <button
                 type="submit"
-                className="w-[40%] disabled block bg-blue-500 hover:bg-blue-700 hover:scale-105 focus:bg-teal-700 text-white font-semibold rounded-lg px-4 py-3 mt-6"
+                className="w-[40%] disabled block bg-bt-100 hover:bg-bt-200 hover:scale-105 focus:bg-teal-700 text-white font-semibold rounded-lg px-4 py-3 mt-6"
               >
                 {spinner ? (
                   <div className="flex justify-center items-center">
