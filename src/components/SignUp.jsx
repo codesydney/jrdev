@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/defaultAvatar.png';
-import avatarBackground from '../assets/avatarBackground.jpg';
-import singupBackground from '../assets/singupBackground.png';
+import signUp from '../assets/signUp.png';
 import { useContext } from 'react';
 import UserContext from '../context/UserInfo';
 import axios from 'axios';
@@ -22,7 +21,6 @@ function SignUp() {
   const [avatar, setAvatar] = useState('');
   const [error, setError] = useState();
   const [valid, setValid] = useState();
-  const [login, setLogin] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
   const handleEmail = e => {
@@ -66,7 +64,7 @@ function SignUp() {
       formData.append('city', city);
       formData.append('phone', phoneNumber);
       formData.append('avatar', avatar);
-      formData.append('userType', userType);
+      // formData.append('userType', userType);
       handlePost(formData);
     }
   };
@@ -98,7 +96,7 @@ function SignUp() {
       <div className="w-[80%] mx-auto flex flex-col sm:flex-row justify-center items-start bg-gradient-to-tr from-white to-bg-200">
         {/* left side */}
         <div className="hidden md:block md:w-1/2 xl:w-2/3 rounded-tr-[20%] my-auto">
-          <img src={singupBackground} alt="" className="h-full w-full" />
+          <img src={signUp} alt="" className="h-full w-full" />
         </div>
         {/* Signup form */}
         <div className="w-full md:w-1/2 xl:w-1/3 p-6 sm:p-12 md:border-double md:border-l-4 md:rounded-tl-[15%]">
@@ -120,7 +118,7 @@ function SignUp() {
                 <div className="mt-2 mb-2">
                   <label
                     htmlFor="avatar"
-                    className="relative cursor-pointer hover:drop-shadow-xl bg-white text-black
+                    className="relative cursor-pointer shadow-inner hover:drop-shadow-xl bg-white text-black
                      hover:bg-gray-200 font-medium py-2 px-4 rounded"
                   >
                     {thumbnail ? 'Edit' : 'Upload'}

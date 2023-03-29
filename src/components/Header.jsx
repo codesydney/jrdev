@@ -89,6 +89,14 @@ function Header() {
             </div>
             <div className="ml-4 flex-shrink-0">
               <Link
+                to="/signup"
+                className="font-medium hover:text-text-100 transition duration-150 ease-in-out"
+              >
+                Sign Up
+              </Link>
+            </div>
+            <div className="ml-4 flex-shrink-0">
+              <Link
                 to="/"
                 className="font-medium hover:text-text-100 transition duration-150 ease-in-out"
               >
@@ -110,6 +118,12 @@ function Header() {
             className="block font-medium text-gray-500 hover:text-text-100 transition duration-150 ease-in-out"
           >
             Sign In
+          </Link>
+          <Link
+            to="/signup"
+            className="block font-medium text-gray-500 hover:text-text-100 transition duration-150 ease-in-out"
+          >
+            Sign Up
           </Link>
           <Link
             to="/"
