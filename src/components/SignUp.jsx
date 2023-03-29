@@ -108,7 +108,7 @@ function SignUp() {
             method="POST"
           >
             {/* avatar and name */}
-            <div className="flex shadow-lg w-[60%] p-2  gap-2 mx-auto rounded-tr-3xl rounded-bl-xl rounded-tl-3xl rounded-br-3xl">
+            <div className="flex shadow-lg w-[80%] p-2  gap-2 mx-auto rounded-tr-3xl rounded-bl-xl rounded-tl-3xl rounded-br-3xl">
               <div className="mt-2 flex flex-1 flex-col gap-2 justify-center items-center ">
                 <img
                   src={thumbnail ? thumbnail : defaultAvatar}
@@ -178,7 +178,7 @@ function SignUp() {
                   id="firstName"
                   placeholder="First Name"
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                  className="w-full px-4 py-2  rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
                 />
               </div>
               <div className="flex-1">
@@ -192,7 +192,7 @@ function SignUp() {
                   id="lastName"
                   placeholder="Last Name"
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                  className="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
                 />
               </div>
             </div>
@@ -205,7 +205,7 @@ function SignUp() {
                 id="email"
                 placeholder="Email"
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                className="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
               />
             </div>
             <div className="mt-2">
@@ -219,7 +219,7 @@ function SignUp() {
                 id="password"
                 placeholder="Password"
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                className="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
               />
             </div>
             <div className="mt-2">
@@ -233,7 +233,7 @@ function SignUp() {
                 id="passwordConfirm"
                 placeholder="Confirm Password"
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                className="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
               />
             </div>
             <div className="mt-2">
@@ -245,7 +245,7 @@ function SignUp() {
                 id="city"
                 placeholder="City"
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                className="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
               />
             </div>
             <div className="mt-2">
@@ -259,14 +259,14 @@ function SignUp() {
                 id="phoneNumber"
                 placeholder="Phone Number"
                 required
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
+                className="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-black focus:bg-white focus:outline-none"
               />
             </div>
-            <div className="mt-2 flex justify-end">
-              <p className={valid ? ' ' : 'text-red-500'}>{error}</p>
+            <p className={valid ? ' ' : 'text-red-500 mt-2'}>{error}</p>
+            <div className="flex justify-end">
               <button
                 type="submit"
-                className="w-[40%] disabled block bg-bt-100 hover:bg-bt-200 hover:scale-105 focus:bg-teal-700 text-white font-semibold rounded-lg px-4 py-3 mt-6"
+                className="w-[40%] disabled block bg-bt-100 hover:bg-bt-200 hover:scale-105 focus:bg-teal-700 text-white font-semibold rounded-lg px-4 py-3 mt-4"
               >
                 {spinner ? (
                   <div className="flex justify-center items-center">
