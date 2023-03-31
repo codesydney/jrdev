@@ -7,6 +7,14 @@
 
 ---
 
+### Languages:
+- JS
+- React
+- tailwind.css
+- TS(in the future)
+
+---
+
 ### first issue: 
 
 1. Join the jr-dev F.E trello page [HERE](https://trello.com/invite/b/bGbmR4GJ/ATTIbc92361f0efb48a5a286db1e1c399ba42687BF9B/jr-dev-fe) and Find an Issue you want to work on
