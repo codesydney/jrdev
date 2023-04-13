@@ -4,10 +4,10 @@ import EmailProvider from "next-auth/providers/email"
 import { SupabaseAdapter } from "@next-auth/supabase-adapter"
 export const authOptions = {
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-    }),
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_ID,
+    //   clientSecret: process.env.GOOGLE_SECRET,
+    // }),
     EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST,
