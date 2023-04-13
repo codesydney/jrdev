@@ -1,8 +1,7 @@
 import Layout from "@/components/layout/Layout"
 import Card from "@/components/Card"
-import { useSession } from "next-auth/react"
+
 export default function Home() {
-  const { data: session } = useSession()
   return (
     <Layout style='flex flex-col items-center'>
       <article className='prose flex flex-col items-center'>
@@ -10,7 +9,8 @@ export default function Home() {
           <h1 className='m-0 text-black'>Jr-dev</h1>
           <p className='m-0 text-dark font-semibold'>From Code.Sydney</p>
         </div>
-        <div className='flex flex-col md:flex-row md:gap-[10%]'>
+
+        <div className='flex flex-col md:flex-row md:gap-[10%] h-[45vh]'>
           <Card
             title='Recruiter'
             text="Make an account with jr-dev to find and hire qualified dev's in your area"
