@@ -3,7 +3,8 @@ import Link from "next/link"
 import Image from "next/image"
 import Logo from "../../img/logo.png"
 import { useSession, signOut } from "next-auth/react"
-import { cookies } from "next/dist/client/components/headers"
+
+import { signIn } from "next-auth/react"
 function Header() {
   const { data: session } = useSession()
 
@@ -27,25 +28,20 @@ function Header() {
             Home
           </Link>
 
-          <Link
-            className='hidden text-primary font-semibold text-md'
-            href='/about'
-          >
-            About Us
-          </Link>
           <div className={session ? "hidden" : "flex gap-2"}>
-            <Link
+            <button
               className='border-[2px] m-auto rounded-full px-3 border-primary  text-lg'
-              href='/signin'
+              onClick={() => signIn()}
             >
               Sign In
-            </Link>
-            <Link
+            </button>
+
+            <button
               className='border-[2px] m-auto rounded-full bg-primary text-white border-primary px-3 text-lg'
-              href='/signup'
+              onClick={() => signIn()}
             >
               Sign Up
-            </Link>
+            </button>
           </div>
           <div
             className={
@@ -56,7 +52,6 @@ function Header() {
               onClick={() => {
                 signOut()
                 localStorage.clear()
-                var Cookies = document.cookie.split(";")
 
                 // set 1 Jan, 1970 expiry for every cookies
                 for (var i = 0; i < Cookies.length; i++)
@@ -84,11 +79,14 @@ function Header() {
               <p className='text-white'>Code.Sydeny</p>
             </div>
           </Link>
-          <div onClick={handleClick} className='px-5 flex flex-col gap-[8px]'>
+          <button
+            onClick={handleClick}
+            className='px-5 flex flex-col gap-[8px]'
+          >
             <div className='bg-white w-[40px] h-[4px] rounded-t-sm'></div>
             <div className='bg-white w-[40px] h-[4px]'></div>
             <div className='bg-white w-[40px] h-[4px] rounded-b-sm'></div>
-          </div>
+          </button>
         </div>
         <div className={navIsVisible ? "flex items-end" : "hidden"}>
           <div className=' border-[1.5px] shadow-lg border-t-0 border-primary z-10 absolute right-0 bg-white top-[60px] items-center flex flex-col px-5 pt-6 rounded-bl-3xl pb-10 gap-3'>
@@ -96,21 +94,18 @@ function Header() {
               Home
             </Link>
 
-            <Link className='hidden text-black text-lg' href='/about'>
-              About Us
-            </Link>
-            <Link
+            <button
               className='border-[2px] shadow-lg my-auto rounded-full px-3 border-primary  text-lg'
-              href='/signin'
+              onClick={() => signIn()}
             >
               Sign In
-            </Link>
-            <Link
+            </button>
+            <button
               className='border-[2px] shadow-lg my-auto rounded-full bg-primary text-white border-primary px-3 text-lg'
-              href='/signup'
+              onClick={() => signIn()}
             >
               Sign Up
-            </Link>
+            </button>
           </div>
         </div>
       </div>
