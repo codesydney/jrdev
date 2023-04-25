@@ -1,17 +1,28 @@
 import { useState } from 'react'
-import { supabase } from '@/lib/supabaseClient'
+import { useSession } from 'next-auth/react'
+import supabase from '@/lib/supabaseClient'
+import jwt from 'jsonwebtoken'
 
 const Roleselect = () => {
   const [role, setRole] = useState('')
+  const { data: session, status } = useSession()
 
   const handleChange = (event) => {
     setRole(event.target.value)
   }
+  const supabaseAccessToken = session.supabaseAccessToken
+  const decodedToken = jwt.decode(supabaseAccessToken)
+  const userId = decodedToken.sub
+
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const { data, error } = await supabase.from('users').update({ role: role }).eq('id', user.id)
-    if (error) console.log('error', error)
-    if (data) console.log('data', data)
+    try {
+      const { data, error } = await supabase.from('users').update({ role }).eq('id', userId)
+      if (error) throw error
+      if (data) console.log('data', data)
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   return (

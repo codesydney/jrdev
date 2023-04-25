@@ -7,6 +7,7 @@ const Dashboard = () => {
   const { data: session, status } = useSession()
   // console.log('loading: ', loading)
   console.log('session: ', session)
+  // console.log('userID: ', session)
 
   if (!session) {
     return <div>Access denied. Please log in.</div>
