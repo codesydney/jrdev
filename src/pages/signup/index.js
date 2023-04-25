@@ -9,20 +9,12 @@ import { signIn } from 'next-auth/react'
 const Signup = () => {
   const [spinner, setSpinner] = useState(false)
 
-  const router = useRouter()
-  const { usertype } = router.query
-
-  if (!usertype) {
-    return <div>Redirct to error page</div>
-  }
-
   return (
     <div className="w-full h-full">
       <div className="w-[80%] min-h-screen flex flex-col sm:flex-row justify-center items-center mx-auto bg-gradient-to-tr from-white to-bg-200">
         {/* SignUp form */}
         <div className="w-full h-screen flex items-center justify-center flex-col md:w-1/2 xl:w-1/3 p-6 sm:p-12 md:border-double md:border-r-4 md:rounded-tr-[15%]">
           <h1 className="text-2xl font-bold text-center mb-5">Please Sign Up</h1>
-
           <form className="flex flex-col items-center justify-center" onSubmit={() => {}}>
             <input
               className="border-2 w-full border-gray-300 p-2 rounded-lg m-2"
@@ -73,7 +65,7 @@ const Signup = () => {
           <hr className="mt-6 border-gray-300 w-full " />
           <button
             onClick={() => {
-              signIn('google')
+              signIn('google', { state: role })
             }}
             className="
             relative
@@ -88,14 +80,14 @@ const Signup = () => {
             text-black
             text-md py-3 font-semibold border-2 mt-6"
           >
-            {/* <FcGoogle
+            <FcGoogle
               size={24}
               className="
                 absolute
                 left-4
                 top-3
               "
-            /> */}
+            />
             Continue with Google
           </button>
           <p className="mt-2 pb-2 font-semibold">

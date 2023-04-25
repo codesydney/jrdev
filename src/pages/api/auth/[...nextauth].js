@@ -26,9 +26,6 @@ export const authOptions = {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL,
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY
   }),
-  pages: {
-    signIn: '/signup?usertype=applicant' || '/signup?usertype=recruiter'
-  },
   callbacks: {
     async session({ session, user }) {
       const signingSecret = process.env.SUPABASE_JWT_SECRET
