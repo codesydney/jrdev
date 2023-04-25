@@ -4,13 +4,13 @@ import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import signUp from '../../../public/assets/signUp.png'
 import Image from 'next/image'
+import { signIn } from 'next-auth/react'
 
 const Signup = () => {
   const [spinner, setSpinner] = useState(false)
 
   const router = useRouter()
   const { usertype } = router.query
-  console.log('usertype: ', usertype)
 
   if (!usertype) {
     return <div>Redirct to error page</div>
@@ -72,7 +72,9 @@ const Signup = () => {
           </form>
           <hr className="mt-6 border-gray-300 w-full " />
           <button
-            onClick={() => {}}
+            onClick={() => {
+              signIn('google')
+            }}
             className="
             relative
             disabled:opacity-70
