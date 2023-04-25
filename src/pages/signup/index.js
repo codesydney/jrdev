@@ -65,7 +65,7 @@ const Signup = () => {
           <hr className="mt-6 border-gray-300 w-full " />
           <button
             onClick={() => {
-              signIn('google', { state: role })
+              signIn('google', { callbackUrl: '/dashborad' })
             }}
             className="
             relative
