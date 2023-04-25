@@ -86,17 +86,16 @@ const Signup = () => {
             bg-white 
             border-black 
             text-black
-            text-md py-3 font-semibold border-2 mt-6
-        "
+            text-md py-3 font-semibold border-2 mt-6"
           >
-            <FcGoogle
+            {/* <FcGoogle
               size={24}
               className="
                 absolute
                 left-4
                 top-3
               "
-            />
+            /> */}
             Continue with Google
           </button>
           <p className="mt-2 pb-2 font-semibold">

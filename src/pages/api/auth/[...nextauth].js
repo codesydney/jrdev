@@ -2,6 +2,8 @@ import NextAuth from 'next-auth/next'
 import GoogleProvider from 'next-auth/providers/google'
 import EmailProvider from 'next-auth/providers/email'
 import { SupabaseAdapter } from '@next-auth/supabase-adapter'
+import jwt from 'jsonwebtoken'
+
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -23,6 +25,26 @@ export const authOptions = {
   adapter: SupabaseAdapter({
     url: process.env.NEXT_PUBLIC_SUPABASE_URL,
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY
-  })
+  }),
+  pages: {
+    signIn: '/signup?usertype=applicant' || '/signup?usertype=recruiter'
+  },
+  callbacks: {
+    async session({ session, user }) {
+      const signingSecret = process.env.SUPABASE_JWT_SECRET
+      if (signingSecret) {
+        const payload = {
+          aud: 'authenticated',
+          exp: Math.floor(new Date(session.expires).getTime() / 1000),
+          sub: user.id,
+          email: user.email,
+          role: 'authenticated'
+        }
+        session.supabaseAccessToken = jwt.sign(payload, signingSecret)
+      }
+      return session
+    }
+  }
 }
+
 export default NextAuth(authOptions)
