@@ -1,25 +1,29 @@
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import supabase from '@/lib/supabaseClient'
-import jwt from 'jsonwebtoken'
 
 const Roleselect = () => {
-  const [role, setRole] = useState('')
+  const [role, setRole] = useState('applicant')
+  const router = useRouter()
   const { data: session, status } = useSession()
 
   const handleChange = (event) => {
     setRole(event.target.value)
   }
-  const supabaseAccessToken = session.supabaseAccessToken
-  const decodedToken = jwt.decode(supabaseAccessToken)
-  const userId = decodedToken.sub
+  // const supabaseAccessToken = session.supabaseAccessToken
+  // const decodedToken = jwt.decode(supabaseAccessToken)
+  // const userId = decodedToken.sub
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data, error } = await supabase.from('users').update({ role }).eq('id', userId)
+      const { data, error } = await supabase
+        .from('users')
+        .update({ role })
+        .eq('id', session.user.id)
       if (error) throw error
-      if (data) console.log('data', data)
+      router.push('/dashboard')
     } catch (error) {
       console.log('error', error)
     }
@@ -35,7 +39,7 @@ const Roleselect = () => {
           <option value="recruiter">Recruiter</option>
         </select>
       </label>
-      <button type="submit">Save</button>
+      <button type="submit">Next</button>
     </form>
   )
 }

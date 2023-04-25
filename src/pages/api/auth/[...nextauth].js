@@ -37,6 +37,7 @@ export const authOptions = {
           email: user.email,
           role: 'authenticated'
         }
+        session.user.id = user.id
         session.supabaseAccessToken = jwt.sign(payload, signingSecret)
       }
       return session
