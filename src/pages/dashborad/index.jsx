@@ -1,16 +1,12 @@
 import { useSession } from 'next-auth/react'
-import Roleselect from '../../components/roleselect/RoleSelect'
 // import ApplicantDashboard from '../components/ApplicantDashboard'
 // import RecruiterDashboard from '../components/RecruiterDashboard'
+import Roleselect from '@/components/roleselect/Roleselect'
 
 const Dashboard = () => {
   const { data: session, status } = useSession()
   // console.log('loading: ', loading)
   console.log('session: ', session)
-
-  if (status) {
-    return <div>Loading...</div>
-  }
 
   if (!session) {
     return <div>Access denied. Please log in.</div>
