@@ -1,18 +1,11 @@
 import Layout from '@/components/layout/Layout'
 import Card from '@/components/Card'
 import { getSession } from 'next-auth/react'
-import Roleselect from '@/pages/roleselect'
 import supabase from '@/lib/supabaseClient'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-export default function Home({ role }) {
-  const router = useRouter()
-
-  if (role === null) {
-    router.push('/roleselect')
-  }
-
+export default function Home() {
   return (
     <Layout style="flex flex-col items-center">
       <article className="prose flex flex-col items-center">
@@ -46,7 +39,17 @@ export async function getServerSideProps(context) {
 
   const userId = session.user.id
   const res = await supabase.from('users').select('role').eq('id', userId)
+  const role = res.data[0]?.role ?? null
+  if (role === null) {
+    return {
+      redirect: {
+        destination: '/roleselect',
+        permanent: false
+      }
+    }
+  }
+
   return {
-    props: { role: res.data[0].role }
+    props: {}
   }
 }

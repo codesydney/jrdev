@@ -11,9 +11,6 @@ const Roleselect = () => {
   const handleChange = (event) => {
     setRole(event.target.value)
   }
-  // const supabaseAccessToken = session.supabaseAccessToken
-  // const decodedToken = jwt.decode(supabaseAccessToken)
-  // const userId = decodedToken.sub
 
   const handleSubmit = async (event) => {
     event.preventDefault()
