@@ -1,9 +1,17 @@
 import Layout from '@/components/layout/Layout'
 import Card from '@/components/Card'
 import { getSession } from 'next-auth/react'
+import Roleselect from '@/pages/roleselect'
+import supabase from '@/lib/supabaseClient'
+import { useSession } from 'next-auth/react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+export default function Home({ role }) {
+  const router = useRouter()
 
-export default function Home() {
-  // console.log('userId: ', userId)
+  if (role === null) {
+    router.push('/roleselect')
+  }
 
   return (
     <Layout style="flex flex-col items-center">
@@ -28,11 +36,17 @@ export default function Home() {
   )
 }
 
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context)
-//   const useId = session.user.id
-//   const res = await supabase.from('users').select('role').eq('id', userId)
-//   return {
-//     props: { role: res.data[0].role }
-//   }
-// }
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  if (!session?.user?.id) {
+    return {
+      props: {}
+    }
+  }
+
+  const userId = session.user.id
+  const res = await supabase.from('users').select('role').eq('id', userId)
+  return {
+    props: { role: res.data[0].role }
+  }
+}

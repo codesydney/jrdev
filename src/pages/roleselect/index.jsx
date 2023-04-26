@@ -23,7 +23,7 @@ const Roleselect = () => {
         .update({ role })
         .eq('id', session.user.id)
       if (error) throw error
-      router.push('/dashboard')
+      router.push('/')
     } catch (error) {
       console.log('error', error)
     }
