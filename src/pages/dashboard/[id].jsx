@@ -31,7 +31,8 @@ const Dashboard = ({ role }) => {
 }
 
 export async function getServerSideProps(context) {
-  const userId = context.params.id
+  const session = await getSession(context)
+  const useId = session.user.id
   const res = await supabase.from('users').select('role').eq('id', userId)
   return {
     props: { role: res.data[0].role }
