@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 import Link from 'next/link'
 import signUp from '../../../public/assets/signUp.png'
@@ -8,6 +9,7 @@ import { signIn } from 'next-auth/react'
 
 const Signup = () => {
   const [spinner, setSpinner] = useState(false)
+  const { data: seesion, error } = useSession()
 
   return (
     <div className="w-full h-full">
@@ -65,7 +67,7 @@ const Signup = () => {
           <hr className="mt-6 border-gray-300 w-full " />
           <button
             onClick={() => {
-              signIn('google', { callbackUrl: '/dashborad' })
+              signIn('google', { callbackUrl: `/dashboard/${seesion.user.id}` })
             }}
             className="
             relative
