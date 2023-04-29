@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import supabase from '@/lib/supabaseClient'
+import { useState } from "react"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/router"
+import supabase from "@/lib/supabaseClient"
 
 const Roleselect = () => {
-  const [role, setRole] = useState('applicant')
+  const [role, setRole] = useState("applicant")
   const router = useRouter()
   const { data: session, status } = useSession()
 
@@ -16,13 +16,13 @@ const Roleselect = () => {
     event.preventDefault()
     try {
       const { data, error } = await supabase
-        .from('users')
+        .from("users")
         .update({ role })
-        .eq('id', session.user.id)
+        .eq("id", session.user.id)
       if (error) throw error
-      router.push('/')
+      router.push("/")
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error)
     }
   }
 
@@ -31,12 +31,12 @@ const Roleselect = () => {
       <label>
         Select your role:
         <select value={role} onChange={handleChange}>
-          <option value="">-- Select --</option>
-          <option value="applicant">Applicant</option>
-          <option value="recruiter">Recruiter</option>
+          <option value=''>-- Select --</option>
+          <option value='applicant'>Applicant</option>
+          <option value='recruiter'>Recruiter</option>
         </select>
       </label>
-      <button type="submit">Next</button>
+      <button type='submit'>Next</button>
     </form>
   )
 }
