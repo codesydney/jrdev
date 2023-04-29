@@ -13,6 +13,7 @@ module.exports = {
       light: "#5bc9eb",
       blue: "#0046b8",
       white: "#fff",
+      black: "#000",
       indigo: {
         100: "#d5e2eb",
         200: "#abc5d6",
